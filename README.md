@@ -1,4 +1,4 @@
-# 0. RRSS - Ruby RSS feed reader ###############################################
+# RRSS - Ruby RSS feed reader ##################################################
 RRSS is a Rss/Rdf/Atom feed reader written in [Ruby](http://www.ruby-lang.org) and using [Sinatra](http://www.sinatrarb.com) and [SQLite](http://www.sqlite.org).
 
 It reads simple configuration files in [YML](http://yaml.org/spec/1.1) format, downloads and stores items in various SQLite databases and sports a nice web GUI to read and manage them (modify, comment, mark, etc...).
@@ -14,6 +14,23 @@ RRSS is also able to:
   - GUI: set custom feed favicon
   - GUI: use a custom skin (CSS)
 
+
+# 0. Installation ##############################################################
+
+  1. check the ruby version you have with `ruby -v` and make sure it is **>= 1.9** 
+  2. obtain a copy of the project from github, you can either:
+    
+    - download the ZIP: `wget https://github.com/acavalin/rrss/archive/master.zip && cd rrss-master`
+    - clone the repository: `git clone https://github.com/acavalin/rrss.git && cd rrss`
+    
+  3. install the **bundler** gem: `gem install bundler`
+  4. now you can install all required gems with `bundle install`
+  5. edit **config.yml** as you prefer
+  5. create a **feeds.yml** config file (see *feeds.yml.example*)
+  6. run the application with `./rrss.rb`
+  7. point your browser to http://localhost:3333
+  8. ????
+  9. profit! ;^)
 
 # 1. Configuration #############################################################
 

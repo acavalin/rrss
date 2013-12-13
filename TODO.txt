@@ -1,8 +1,9 @@
 - rss_mngr:
-  - CGF: feed comment key
+  - dump feed link (prompt xml/json => window.open)
+  - perss "N" to go to the next unread visible folder
   - implement "forward url" function
   - edit configuration GUI (feeds.yml, config.yml)
-  - dump feed link (prompt xml/json => window.open)
+    - CGF: feed comment key
 
 - rss_dler:
   - items filtering:
