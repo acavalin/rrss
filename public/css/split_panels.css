@@ -1,0 +1,36 @@
+div.panel {
+  margin: 0;
+  padding: 0;
+}
+
+div.panel.panel_left {
+  border-right: 5px solid grey;
+  height: 100%;
+  position: absolute;
+  left: 0; top: 0;
+}
+div.panel.panel_right {
+  height: 100%;
+  position: absolute;
+  right: 0; top: 0;
+}
+div.panel.panel_top {
+  border-bottom: 5px solid grey;
+  position: absolute;
+  width: 100%;
+  left: 0; top: 0;
+}
+div.panel.panel_bottom {
+  position: absolute;
+  width: 100%;
+  left: 0; bottom: 0;
+}
+
+.ui-resizable-handle:hover {
+  background-color: lime;
+}
+
+div.scroller {
+  overflow: auto;
+  height: 100%;
+}

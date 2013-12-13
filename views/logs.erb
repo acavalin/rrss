@@ -1,0 +1,10 @@
+<div class="log_buffer">
+  <h3>
+    Buffer log
+    <a href="javascript:$.logs.purge()" title="Purge">
+      <span class="ui-icon ui-icon-trash"></span>
+    </a>
+  </h3>
+  
+  <%= @lines.join "\n" %>
+</div>

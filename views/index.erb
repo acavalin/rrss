@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>RRSS - Ruby RSS feed reader</title>
+  
+  <link rel="icon" href="favicon.ico" />
+  
+  <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.3.custom.min.css">
+  <link rel="stylesheet" href="css/split_panels.css">
+  <link rel="stylesheet" href="css/layouts/<%= settings.layout %>.css">
+  <link rel="stylesheet" href="css/application.css">
+  
+  <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+  <script type="text/javascript" src="js/split_panels.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/utils.js"></script>
+  <script type="text/javascript" src="js/feeds.js"></script>
+  <script type="text/javascript" src="js/items.js"></script>
+  <script type="text/javascript" src="js/item.js"></script>
+  <script type="text/javascript" src="js/logs.js"></script>
+  <script type="text/javascript" src="js/application.js"></script>
+</head>
+
+<body data-forward_url="<%= settings.forward_url || '' %>">
+  <div class="panel feeds">
+    <div class="scroller" id="feeds"></div>
+  </div>
+  <div class="panel feed">
+    <div class="panel items">
+      <div class="scroller" id="items">
+        <div class="acenter">select a feed</div>
+      </div>
+    </div>
+    <div class="panel item" style="overflow: auto;">
+      <div class="scroller" id="item">
+        <div class="acenter">select an item</div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

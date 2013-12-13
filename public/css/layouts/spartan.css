@@ -1,0 +1,279 @@
+/* --------------------------------------------------------------------------
+ * feeds list
+ * -------------------------------------------------------------------------- */
+#feeds div {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: sans;
+}
+
+#feeds div.item {
+  padding: 2px 0;
+  border-bottom: 1px dotted grey;
+}
+#feeds div.item:hover {
+  background-color: #ddd;
+}
+
+#feeds div.item > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+#feeds div.folder { background-color: #eee; }
+#feeds div.folder > span.icon:first-child {
+  cursor: pointer;
+  border-right: 1px dotted black;
+}
+#feeds div.folder > span.info { text-align: center; }
+
+#feeds div.item > span.icon {
+  width: 16px;
+  height: 16px;
+}
+
+#feeds div.item > span.fav {
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+}
+
+#feeds div.item > .info { float: right; }
+
+#feeds div.item.unread > .name { font-weight: bold; }
+
+#feeds div.item > .purge { cursor: pointer; }
+
+#feeds span.ui-icon { border-radius: 16px; }
+#feeds span.ui-icon-circle-minus { background-color: red;  }
+#feeds span.ui-icon-circle-check { background-color: lime; }
+
+#feeds div.item.selected { background-color: #bbb; }
+#feeds div.item.disabled { background-color: #ffc; }
+
+#feeds div.item.root {
+  position: absolute;
+  width: 100%;
+  left: 0; top: 0;
+  background-color: #eee;
+  border-bottom: 1px solid black;
+}
+#feeds div.item.root span.icon {
+  border: 0;
+  border-left: 1px solid black;
+  text-align: center;
+}
+
+#feeds div.folder_contents {
+  margin-left: 16px;
+  border-left: 1px dotted grey;
+}
+#feeds div.folder_contents:hover { border-left: 1px solid black; }
+
+/* --------------------------------------------------------------------------
+ * items list
+ * -------------------------------------------------------------------------- */
+#items div {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: sans;
+}
+
+#items select {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+#items div.item {
+  padding: 2px 0;
+  border-bottom: 1px dotted grey;
+}
+#items div.item:hover { background-color: #ddd; }
+
+#items div.item.selected {
+  background-color: #bbb;
+  border: 2px inset black;
+}
+
+#items div.item > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#items div.item > span.icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+#items div.item > span.ui-icon { border-right: 1px dotted grey; }
+
+#items div.item > span.title {
+  width: 70%;
+  height: 12px;
+  overflow: hidden;
+}
+
+#items div.item > span.fav { background-size: 16px 16px; }
+
+#items div.item > span.icon.kept,
+#items div.item > span.icon.read { cursor: pointer; }
+
+#items div.item > .info { float: right; }
+
+#items div.item.unread .title { font-weight: bold; }
+
+#items div.item.kept { background-color: #fdd; }
+
+#items div.item.root {
+  position: absolute;
+  width: 98%;
+  left: 0; top: 0;
+  background-color: #eee;
+  border-bottom: 1px solid black;
+}
+#items div.item.root span.icon {
+  border: 0;
+  border-right: 1px solid black;
+  text-align: center;
+}
+#items div.item.root span.info.icon {
+  border: 0;
+  border-left: 1px solid black;
+  cursor: pointer;
+}
+
+#items div.item.root span.mode {
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+ * item details, linear view
+ * -------------------------------------------------------------------------- */
+#item {
+  font-size: 14px;
+  font-family: sans;
+}
+
+#item hr {
+  border: 0 none;
+  height: 1px;
+  background-color: grey;
+}
+
+#item div {
+  margin: 0;
+  padding: 0;
+}
+
+#item div.item {
+  padding: 2px 0;
+  border-bottom: 1px dotted grey;
+}
+
+#item div.item span,
+#item span.ui-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#item div.item > span.icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+#item div.item > span.ui-icon { border-right: 1px solid black; }
+
+#item div.item > span.fav { background-size: 16px 16px; }
+
+#item div.item span.icon.kept,
+#item div.item span.icon.read,
+#item div.item span.icon.cmt,
+#item div.item span.icon.edit { cursor: pointer; }
+
+#item div.item > .info { float: right; }
+
+#item div.item.root {
+  position: absolute;
+  width: 98%;
+  left: 0; top: 0;
+  background-color: #eee;
+  border-bottom: 1px solid black;
+}
+
+#item div.comment span { font-style: italic; }
+
+#item .content { display: inline-block; }
+
+#item pre.extra_info {
+  color: grey;
+  font-size: small;
+}
+
+#item .edit_content { display: none; }
+#item .edit_content textarea {
+  width: 100%;
+  height: 15em;
+}
+
+#item div.linear_item { border-bottom: 3px solid black; }
+#item div.linear_item.kept { background-color: #fdd; }
+#item div.linear_item.unread > div.root a { font-weight: bold; }
+#item div.linear_item > div.root { position: relative; }
+
+#item div.linear_item.inline_item {
+  float: left;
+  width: 200px;
+  height: 350px;
+  overflow: hidden;
+  font-size: 10px;
+  border: 1px outset silver;
+}
+#item div.linear_item.inline_item div.root span.date,
+#item div.linear_item.inline_item div.root span.ui-icon.read,
+#item div.linear_item.inline_item div.root span.ui-icon.edit,
+#item div.linear_item.inline_item div.comment { display: none; }
+#item div.linear_item.inline_item div.root { width: 100% !important; }
+#item div.linear_item.inline_item div.root a {
+  font-size: 12px;
+  font-weight: inherit;
+}
+
+#item div.log_buffer {
+  font-size: 10px;
+  font-family: monospace;
+}
+
+#item div.log_buffer .ui-icon { vertical-align: bottom; }
+
+#item div.log_buffer .type_D { background-color: #ccf; }
+#item div.log_buffer .type_I { background-color: #9f9; }
+#item div.log_buffer .type_W { background-color: #f96; }
+#item div.log_buffer .type_E { background-color: #f66; }
+#item div.log_buffer div:hover {
+  background-color: #eef;
+  border-left: 2px solid black;
+  padding-left: 2px;
+}
+
+#item table.help {
+  margin-left: 1em;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+#item table.help td,
+#item table.help th {
+  padding: 0.3em;
+  border: 1px solid black;
+}
+#item table.help.keyb_shortcuts tr td:first-child { font-weight: bold; }
+
+#item a { color: blue; }
+#item a:hover {
+  box-shadow: 0 0 2px lime;
+  border-radius: 2px;
+}

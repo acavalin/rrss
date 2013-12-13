@@ -1,0 +1,16 @@
+Gemfile.lock
+.ruby-version
+
+db/*.db
+feeds.yml
+
+scrapes/*
+!scrapes/*.sh
+
+scripts/*
+!scripts/*.sh
+
+filters/*
+!filters/*.sh
+
+public/jqui.htm

@@ -1,0 +1,35 @@
+<%= @favicons_css %>
+
+<div class="item root toolbar" data-cur_filter="<%= params[:filter].to_i %>">
+  <span class="icon"  title="kept?"  >K</span>
+  <span class="icon"  title="read?"  >R</span>
+  <span title="<%= params[:feeds].join(', ') if params[:feeds].size > 1 %>">
+    <%= params[:container] %> items list
+    (<%= params[:feeds].size %> feed/s, <%= @items.size %> items)
+  </span>
+    <select onchange="$.feeds.load_items($('#feeds .selected'), {filter: $(this).val()});">
+      <% ['unread + kept', 'unread', 'kept', 'all'].each_with_index do |k, i| %>
+        <%= %Q|<option value="#{i}" #{'selected' if i == params[:filter].to_i}>#{k}</option>| %>
+      <% end %>
+    </select>
+  <span class="info icon mark_all_read" title="mark all as read"  ><span class="ui-icon ui-icon-check"></span></span>
+  <span class="info icon close_view"    title="close current view"><span class="ui-icon ui-icon-closethick"></span></span>
+  <span class="info icon linear_view"   title="open linear mode"  ><span class="ui-icon ui-icon-video"></span></span>
+  <span class="info icon filter"        title="change view"       ><span class="ui-icon ui-icon-transferthick-e-w"></span></span>
+</div>
+<div class="item placeholder toolbar"><span class="icon">X</span>x<select></select></div>
+
+<% @items.each do |i| %>
+  <div class="item <%= 'unread' if i['read'] == 0 %>  <%= 'kept' if i['kept'] == 1 %>"
+       data-feed="<%= h i['name'] %>"
+       data-id="<%= i['id'] %>">
+    <span class="icon kept ui-icon ui-icon-<%= i['kept'] == 1 ? 'heart' : 'radio-off' %>"></span>
+    <span class="icon read ui-icon ui-icon-<%= i['read'] == 0 ? 'star'  : 'minus' %>"></span>
+    <span class="icon fav" title="<%= h i['name'] %>"></span>
+    <span class="title">
+      <%= '&lowast;' if i['modified'] == 1 %>
+      <%= i['title'] %>
+    </span>
+    <span class="info date"><%= i['pub_date'] %></span>
+  </div>
+<% end %>

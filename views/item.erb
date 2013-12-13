@@ -1,0 +1,47 @@
+<% content = @item['content'].force_encoding('UTF-8').
+    gsub(/<!\[CDATA\[/, '').gsub(/\]\]>/, '').
+    gsub(/<iframe/, '<!-- iframe').gsub(/<\/iframe>/, '</iframe -->').
+    gsub(/<script/, '<!-- script').gsub(/<\/script>/, '</script -->') %>
+
+<div class="item root" data-feed="<%= h @item['name'] %>">
+  <span class="icon kept ui-icon ui-icon-<%= @item['kept'] == 1 ? 'heart' : 'radio-off' %>"></span>
+  <span class="icon read ui-icon ui-icon-<%= @item['read'] == 0 ? 'star'  : 'minus' %>"></span>
+  <span class="icon edit ui-icon ui-icon-pencil"  title="edit"></span>
+  <span class="icon cmt  ui-icon ui-icon-comment" title="comment"></span>
+  <span class="icon fav" title="<%= @item['name'] %>"></span>
+  <a href="<%= @item['link'] %>" target="_blank">
+    <%= @item['title'].force_encoding('UTF-8') %>
+    <span class="icon ui-icon ui-icon-extlink"></span>
+  </a>
+  <span class="info date"><%= @item['pub_date'] %></span>
+</div>
+
+<div class="content"
+     data-feed="<%= h @item['name'] %>"
+     data-id="<%= @item['id'] %>">
+  <div><%= content %></div>
+
+  <div class="comment">
+    <hr/>
+    &laquo;
+    <span>
+      <%= @item['comment'].to_s != '' ? @item['comment'].force_encoding('UTF-8') : '&hellip;' %>
+    </span>
+    &raquo;
+  </div>
+<% unless params[:linear] %>
+  <hr/>
+  
+  <pre class="extra_info">
+FEED: <%= h @item['name'] %>
+GUID: <span title="<%= @item['guid'] %>"><%= @item['guid'].size > 100 ? (@item['guid'][0..100]+'&hellip;') : @item['guid'] %></span>
+ID  : <%= @item['id'] %>
+HID : <%= @item['hash_id'] %>
+  </pre>
+<% end %>
+</div>
+
+<div class="edit_content">
+  <textarea><%= h content %></textarea>
+  <button class="jqbt" onclick="$.item.edit( $(this) )">Update</button>
+</div>

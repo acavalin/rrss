@@ -1,0 +1,80 @@
+<div class="item root toolbar">
+  <span>Feeds list @ <%= Time.now.strftime("%H:%M") %></span>
+  <span class="info icon" title="purge"       >P</span>
+  <span class="info icon" title="enabled?"    >E</span>
+  <span class="info icon" title="website"     >L</span>
+  <span class="info icon" title="unread count">#</span>
+  <span class="info icon" title="refresh feeds">
+    <a href="javascript:$.feeds.refresh_feeds()">
+      <span class="ui-icon ui-icon-refresh"></span>
+    </a>
+  </span>
+  <% err_present = settings.rssdler.log_buffer.split("\n").any?{|l| l[0] != 'I'} %>
+  <span class="info icon" title="view logs">
+    <a href="javascript:$.feeds.show_logs()">
+      <span class="ui-icon ui-icon-<%= err_present ? 'alert' : 'info' %>"></span>
+    </a>
+  </span>
+  <span class="info icon" title="help">
+    <a href="javascript:$.feeds.show_help();">
+      <span class="ui-icon ui-icon-help"></span>
+    </a>
+  </span>
+</div>
+<div class="item placeholder toolbar"><span class="icon">X</span>x</div>
+
+<% depth = 0 %>
+
+<% @feeds.each_with_index do |f, i| %>
+  <% if depth < f[:depth] %>
+    <div class="folder_contents" <%= 'style="display: none"' if @feeds[i-1][:closed] %>>
+  <% elsif depth > f[:depth] %>
+    <% (depth - f[:depth]).times do %>
+      </div><!-- folder_contents -->
+    <% end %>
+  <% end %>
+  
+  <% depth = f[:depth] if depth != f[:depth] %>
+  
+  <%
+  tipo = f[:name] ? 'feed' : 'folder'
+  name = f[:name] || f[:folder]
+  display_name = titleize(name)
+  
+  classes = []
+  classes << tipo
+  classes << 'unread'   if tipo != 'folder' && f[:unread] != 0
+  classes << 'disabled' if tipo != 'folder' && !f[:enabled]
+  %>
+  <div class="item <%= classes.join ' ' %>"
+       data-name="<%= name %>"
+       title="<%= "last up @ #{f[:last_update].strftime('%F %H:%M')}" if f[:last_update] %>">
+
+    <% if tipo != 'feed' %>
+      <span class="icon folder ui-icon ui-icon-folder-<%= f[:closed] ? 'collapsed' : 'open' %>"></span>
+      <span class="name">[<%= display_name %>]</span>
+      <span class="info icon">-</span>
+      <span class="info icon">-</span>
+      <span class="info icon">-</span>
+      <span class="info unread bold">###</span>
+    <% else %>
+      <span class="icon fav" style="background-image: url(data:<%= f[:favicon] %>)"></span>
+      <span class="name"><%= display_name %></span>
+      <span class="info purge" title="purge items">
+        <span class="ui-icon ui-icon-trash"></span>
+      </span>
+      <span class="info enabled">
+        <span class="ui-icon ui-icon-circle-<%= f[:enabled] ? 'check' : 'minus' %>"
+              title="<%= f[:enabled] ? 'enabled' : 'disabled' %>"></span>
+      </span>
+      <span class="info link" title="website">
+        <a href="<%= f[:link] %>" target="_blank">
+          <span class="ui-icon ui-icon-extlink"></span>
+        </a>
+      </span>
+      <span class="info unread bold" title="unread items"><%= f[:unread] if f[:unread] != 0 %></span>
+    <% end %>
+  </div>
+  
+  <%= '</div>' * depth if @feeds.size == (i+1) %>
+<% end %>

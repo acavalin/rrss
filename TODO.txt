@@ -1,0 +1,12 @@
+- rss_mngr:
+  - CGF: feed comment key
+  - implement "forward url" function
+  - edit configuration GUI (feeds.yml, config.yml)
+  - dump feed link (prompt xml/json => window.open)
+
+- rss_dler:
+  - items filtering:
+    - CFG: reject/accept item by key+regexp matching
+    - filters scripts folder (like accept option)
+  - export feedlist to OPML (xml)
+  - support enclosure? --> http://en.wikipedia.org/wiki/RSS_enclosure

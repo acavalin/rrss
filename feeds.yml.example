@@ -1,0 +1,80 @@
+# personalize and then rename this file into feeds.yml
+
+- informations:
+  - :gp2x news:
+    - :name:    gp2x archive
+      :url:     http://dl.openhandhelds.org/gp2x/rss20.php
+      :link:    http://dl.openhandhelds.org/gp2x.htm
+
+    - :name:    gp2x planet
+      :url:     http://planet.gp2x.org/rss20.xml
+      :link:    http://planet.gp2x.org
+      :enabled: false
+
+  - :comic strips:
+    - :name:    pusheen
+      :url:     http://pusheen.com/rss
+
+    - :name:    xkcd.com
+      :url:     http://www.xkcd.com/atom.xml
+      :link:    http://xkcd.com/
+      :validation: false
+
+    - :name:    aerial line
+      :url:     http://divajutta.com/doctormo/ubunchu/feed.rss
+      :link:    http://divajutta.com/doctormo/ubunchu/
+      :period:  60
+      :hash_keys: [ :id, :link, :title ]
+
+    - :name:    saturday morning breakfast cereal
+      :url:     http://feeds.feedburner.com/smbc-comics/PvLb
+      :link:    http://www.smbc-comics.com
+
+    - :name:    wulffmorgenthaler
+      :url:     http://feeds.feedburner.com/wulffmorgenthaler
+      :link:    http://wumo.com
+      :period:  1440
+      :validation: false
+
+  - :misc journals:
+    - :name:    nytimes europe
+      :url:     http://feeds.nytimes.com/nyt/rss/Europe
+      :link:    http://www.nytimes.com/pages/world/europe/index.html?partner=rss&amp;emc=rss
+      :enabled: true
+
+    - :name:    nytimes technology
+      :url:     http://feeds.nytimes.com/nyt/rss/Technology
+      :link:    http://www.nytimes.com/pages/technology/index.html?partner=rss&amp;emc=rss
+      :enabled: false
+
+  - :tech journals:
+    - :name:    slashdot
+      :url:     http://rss.slashdot.org/Slashdot/slashdot
+      :period:  60
+
+    - :name:    phoronix
+      :url:     http://www.phoronix.com/rss.php
+      :link:    http://www.phoronix.com/
+
+    - :filamentgroup:
+      - :name:    jquery blog
+        :url:     http://blog.jquery.com/feed/
+        :link:    http://blog.jquery.com
+
+      - :name:    jquery ui blog
+        :url:     http://feeds2.feedburner.com/jquery-ui
+        :link:    http://blog.jqueryui.com
+
+      - :name:    filamentgroup
+        :url:     http://filamentgroup.com/lab/atom/
+        :link:    http://filamentgroup.com
+
+- :system updates:
+  - :name:    linux kernel
+    :url:     https://kernel.org/kdist/rss.xml
+    :link:    http://www.kernel.org/
+    :period:  720
+
+- :name:    debian news
+  :url:     http://www.debian.org/News/news
+  :link:    http://www.debian.org/News/
