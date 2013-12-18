@@ -45,7 +45,7 @@ Configuration for the feed downloader and parser:
   <tr><td>max_item_days</td><td>Number of required days for an item to be marked as old     </td></tr>
   <tr><td>max_old_items</td><td>Maximum number of old items to keep                         </td></tr>
   <tr><td>parse_timeout</td><td>Rss parsing timeout (in seconds)                            </td></tr>
-  <tr><td>period       </td><td>Feed check default interval time (in seconds)               </td></tr>
+  <tr><td>period       </td><td>Feed check default interval time (in minutes)               </td></tr>
   <tr><td>timeout      </td><td>Download/scrape timeout (in seconds)                        </td></tr>
 </table>
 

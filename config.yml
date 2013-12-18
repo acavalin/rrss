@@ -1,5 +1,5 @@
 :rss_dler:
-  period:           480   # feed check default interval time (in seconds)
+  period:           480   # feed check default interval time (in minutes)
   timeout:          15    # download/scrape timeout (in seconds)
   parse_timeout:    30    # rss parsing timeout (in seconds)
   max_item_days:    33    # number of required days for an item to be marked as old
