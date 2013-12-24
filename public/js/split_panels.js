@@ -3,7 +3,7 @@
 // frame emulation with DIV tags
 //   p1, p2 :  panel items (left/right | top/bottom)
 //   dir    :  direction (h|v)
-//   options:  boh
+//   sizes  :  array containing the size of the panels
 $.split_panels = function (p1, p2, dir, sizes) {
   p1    = $(p1);
   p2    = $(p2);
@@ -37,7 +37,7 @@ $.split_panels = function (p1, p2, dir, sizes) {
     stop:  function () { $('body').data('resizing_panels', false); }
   }));
   
-  // gestione ridimensionamento finestra
+  // handle window resize
   $(window).resize(function (ev) {
     if (!$('body').data('resizing_panels')) {
       var options = get_options();

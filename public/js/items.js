@@ -59,7 +59,7 @@ $.extend($, {
       });
     },//toggle_read
     
-    // cambia la GUI in base alla classe 'unread' dell'item_tag
+    // update GUI uread counters starting from "item_tag"
     refresh_read: function (item_tag) {
       var icon      = item_tag.find('.icon.read'),
           counter   = $('#feeds div.feed[data-name="'+item_tag.data('feed')+'"] .unread'),
@@ -109,12 +109,12 @@ $.extend($, {
           
           $.utils.fix_toolbars_width( $('#item > div.root') );
           
-          // sposta i contenuti sotto alla barra di controllo
+          // move contents below the control bar
           var tbar_height = $('#item > div.root').height() + 10;
           $('#item > div.content, #item > div.edit_content').
             css('margin-top', tbar_height +'px');
           
-          // segna item come letto
+          // mark item as read
           if (item_tag.hasClass('unread')) {
             item_tag.removeClass('unread');
             $.items.refresh_read(item_tag);
@@ -210,7 +210,7 @@ $.extend($, {
 });
 
 
-// scrolla #items all'elemento selezionato
+// scroll #items to the selected item
 $.fn.scroll_items_here = function () {
   if ($(this).length != 0)
     $('#items').scrollTop(
@@ -221,13 +221,13 @@ $.fn.scroll_items_here = function () {
 }//scroll_items_here
 
 
-// gestione click sugli items
+// manage clicks on #items child elements
 $('#items').
-  // click su un folder/feed
+  // click on folder/feed
   on('click', 'div.item', function (ev) {
     if (!$(ev.target).is('.ui-icon-heart, .ui-icon-radio-off, .ui-icon-star, .ui-icon-minus') &&
         !$(this).hasClass('root')) {
-      // evidenzia riga
+      // highlight row
       $('#items div.item.selected').removeClass('selected');
       $(this).addClass('selected');
       

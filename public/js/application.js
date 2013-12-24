@@ -2,7 +2,7 @@
 // -----------------------------------------------------------------------------
 var arrow_scroll_pixels = 50; // pixels to scroll in linear mode
 
-// divisione in pannelli
+// split page into 3 panels
 $.split_panels('div.panel.feeds', 'div.panel.feed', 'h', $.config.split_panels_h);
 $.split_panels('div.panel.items', 'div.panel.item', 'v', $.config.split_panels_v);
 
@@ -10,7 +10,7 @@ $(document).ajaxComplete(function (ev) {
   $('.jqbt').button(); // stile bottoni
 });
 
-// shortcuts per la gestione degli items
+// define application shortcuts
 $(document).keydown(function (ev) {
   if (ev.ctrlKey || ev.altKey || $(document.activeElement).is(':input'))
     return true;
@@ -26,8 +26,8 @@ $(document).keydown(function (ev) {
     $.feeds.show_help();
   } else if (ev.which == 78) {                      // n - next unread
     item = item.length == 0 ?
-      $('#items div.item.unread:visible:first') :     // prendi il primo
-      item.nextAll('div.item.unread:visible:first');  // prendi il succ
+      $('#items div.item.unread:visible:first') :     // get the first item
+      item.nextAll('div.item.unread:visible:first');  // get the next item
     item.click().scroll_items_here();
   } else if (ev.which == 40) {                      // down - next
     if ($('#item .linear_item').length > 0) // scroll linear mode

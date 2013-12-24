@@ -65,7 +65,7 @@ $.extend($, {
           $.utils.fix_toolbars_width( $('#feeds > div.root') );
           $.feeds.update_folder_unread_count();
           
-          if (feed_name)  // evidenzia la voce precedente
+          if (feed_name)  // select the previously viewed feed
             $('#feeds div.item[data-name="'+feed_name+'"]').
               addClass('selected').
               parents('.folder_contents').show();
@@ -136,29 +136,29 @@ $.extend($, {
   },//feeds
 });
 
-// caricamento e refresh della lista dei feeds
+// setup load and refresh of the feeds list
 $.feeds.refresh_feeds();
 setInterval(function () { $.feeds.refresh_feeds(); }, $.config.feeds_refresh_time * 60 * 1000);
 
-// gestione click sui feeds
+// manage clicks on the feeds
 $('#feeds').
-  // click su apertura/chisura folder
+  // click on open/close folder
   on('click', 'div.folder > .icon.folder', function (ev) {
     $(this).toggleClass('ui-icon-folder-collapsed ui-icon-folder-open');
     $(this).parent().next().slideToggle('fast');
   }).
-  // click su un folder/feed
+  // click on folder/feed
   on('click', 'div.item', function (ev) {
     if (!$(ev.target).is('.ui-icon-extlink, .ui-icon-folder-collapsed, .ui-icon-folder-open, .ui-icon-trash') &&
         !$(this).hasClass('root')) {
-      // evidenzia riga
+      // highlight row
       $('#feeds div.item.selected').removeClass('selected');
       $(this).addClass('selected');
       
       $.feeds.load_items( $(this) );
     }//if
   }).
-  // click su purge items
+  // click on purge items
   on('click', 'div.item > .purge', function (ev) {
     $.feeds.purge_items( $(this).parent() );
   });

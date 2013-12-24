@@ -111,9 +111,9 @@ $.extend($, {
   },//item
 });
 
-// gestione click sul dettagli dell'item
+// manage clicks on #item details
 $('#item').
-  // click sulla modifica
+  // click on modify
   on('click', 'div.item > .icon.edit', function (ev) {
     $(this).parent().nextAll('.content, .edit_content').toggle();
     
