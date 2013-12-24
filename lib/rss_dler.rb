@@ -437,6 +437,7 @@ class RSSDler
             'User-Agent' => agent
           }).read
         end # thread
+        
         unless thr.join(timeout)
           thr.kill
           raise "timeout #{timeout}s"

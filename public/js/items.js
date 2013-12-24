@@ -170,18 +170,22 @@ $.extend($, {
       $('#feeds div.selected').removeClass('selected');
       $('#item, #items').empty();
       $('#items').data('feeds', null);
+      $('#items').data('search', null);
     },//close_view
     
     linear_view: function (thumbs) {
-      var names = $('#items').data('feeds');
+      var names  = $('#items').data('feeds'),
+          search = $('#items').data('search');  // get last search
       
-      if (names && names.length > 0)
+      if (names && names.length > 0) {
         $.ajax({
           url: '/items',
           data: {
             feeds: names,
             linear: true,
             filter: $('#items div.root').data('cur_filter'),
+            // filter results if the search is on the current feeds list  
+            search: names == search.feeds ? search.term : '',
           },//data
           type: 'GET',
           dataType: 'html',
@@ -200,6 +204,7 @@ $.extend($, {
           },//success
           error: function () { $('#item').html('Server error!'); }
         });
+      }//if
     }//linear_view
   },//items
 });

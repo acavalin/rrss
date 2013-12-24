@@ -105,8 +105,11 @@ class RSSMngr < Sinatra::Base
     }.compact
     @favicons_css = %Q|<style type="text/css">#{@favicons_css.join "\n"}</style>|
     
+    fields = params[:linear] ? %w{ * } : %w{ id read kept modified title pub_date }
+    @items = fetch_items(params[:feeds], fields, params[:filter].to_i, params[:search].to_s)
+    
     if params[:linear]
-      fetch_items(params[:feeds], %w{*}, params[:filter].to_i).map{|item|
+      @items.map{|item|
         @item    = item
         classes  = %w{ linear_item }
         classes << 'kept'   if item['kept'] == 1
@@ -114,8 +117,6 @@ class RSSMngr < Sinatra::Base
         %Q|<div class="#{classes.join ' '}">#{erb(:item)}</div>|
       }.unshift(@favicons_css).join
     else
-      @items = fetch_items(params[:feeds], %w{id read kept modified title pub_date},
-        params[:filter].to_i, params[:search].to_s)
       erb :items
     end
   end # ------------------------------------------------------------------------

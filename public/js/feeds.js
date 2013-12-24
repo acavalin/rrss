@@ -126,6 +126,7 @@ $.extend($, {
         success: function (resp) {
           $('#items').
             data('feeds', names).
+            data('search', {feeds: names, term: options.search}).  // save last search
             html(resp);
           $.utils.fix_toolbars_width( $('#items > div.root') );
         },//success

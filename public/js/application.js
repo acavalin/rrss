@@ -22,7 +22,7 @@ $(document).keydown(function (ev) {
   
   // console.log([ ev.which, ev.ctrlKey, ev.shiftKey, ev.altKey, item ]);
   
-  if (ev.which == 72) {              // h - help
+  if (ev.which == 72) {                             // h - help
     $.feeds.show_help();
   } else if (ev.which == 78) {                      // n - next unread
     item = item.length == 0 ?
