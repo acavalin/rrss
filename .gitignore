@@ -12,6 +12,3 @@ scripts/*
 
 filters/*
 !filters/*.sh
-
-public/jqui.htm
-rsync.sh
