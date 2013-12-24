@@ -6,9 +6,12 @@ feeds.yml
 
 scrapes/*
 !scrapes/*.sh
+!scrapes/sample
 
 scripts/*
 !scripts/*.sh
+!scripts/sample
 
 filters/*
 !filters/*.sh
+!filters/sample

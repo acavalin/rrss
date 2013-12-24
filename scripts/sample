@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# take a look at this file, it defines useful variables and functions
+source ../lib/functions.sh
+
+# the script receives the entire feeds as his standard input, so you can
+# manipulate it at your wish
+sanitizeXml | convertToUtf8
