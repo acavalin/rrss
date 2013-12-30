@@ -530,11 +530,11 @@ class RSSDler
       begin
         raise 'skipping validation' if fcfg[:validation] == false
         @log.info "#{fcfg[:name]}: reading w/ validation"
-        Timeout.timeout(PARSE_TIMEOUT){ feed = RSS::Parser.parse(content) }
+        Timeout.timeout(parse_timeout){ feed = RSS::Parser.parse(content) }
       rescue
         level = fcfg[:validation] == false ? :info : :warn
         @log.send level, "#{fcfg[:name]}: reading w/o validation"
-        Timeout.timeout(PARSE_TIMEOUT){ feed = RSS::Parser.parse(content, false) }
+        Timeout.timeout(parse_timeout){ feed = RSS::Parser.parse(content, false) }
       end
       
       raise 'empty feed' unless feed
