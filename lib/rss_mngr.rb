@@ -22,6 +22,8 @@ require 'sinatra/base'  # http://www.sinatrarb.com/documentation.html
 # require 'sinatra/reloader'  # http://www.sinatrarb.com/contrib/reloader
 
 class RSSMngr < Sinatra::Base
+  use Rack::Deflater # enable gzip compression
+  
   include Utils
   
   # ============================================================================
