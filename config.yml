@@ -6,7 +6,11 @@
   max_old_items:    100   # maximum number of old items to keep
   # item properties to be hashed for generating its unique id
   # available keys are: :id, :link, :title, :descr, :date
-  hash_keys:        [ :id, :link, :title, :date ]
+  hash_keys:
+    - :id
+    - :link
+    - :title
+    - :date
 
 # ------------------------------------------------------------------------------
 
