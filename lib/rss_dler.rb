@@ -489,26 +489,6 @@ class RSSDler
       end
     end
     
-    # --- applying regexp list
-    if fcfg[:regexp].is_a?(Array)
-      @log.info "#{fcfg[:name]}: refining content"
-      begin
-        fcfg[:regexp].each do |pair|
-          raise 'invalid regexp pair' unless pair.is_a?(Array) && pair.size == 2
-          rex, str = pair
-          content = content.to_s.gsub Regexp.new(rex.to_s), str.to_s
-        end
-      rescue
-        @log.warn "#{fcfg[:name]}: regexp error (#{$!})"
-      end
-    end
-    
-    if content.to_s !~ /^.*<\?xml.*version/i
-      # File.open('output.xml','w'){|f| f.write content}
-      @log.error "#{fcfg[:name]}: feed does not contain xml"
-      return false
-    end
-    
     # convert and sanitize to UTF8
     initial_encoding = content.encoding.name
     if initial_encoding.upcase != 'UTF-8'
@@ -521,6 +501,26 @@ class RSSDler
       end
       
       @log.debug "#{fcfg[:name]}: encoding #{initial_encoding} => #{content.encoding.name}"
+    end
+    
+    if content.to_s !~ /^.*<\?xml.*version/i
+      # File.open('output.xml','w'){|f| f.write content}
+      @log.error "#{fcfg[:name]}: feed does not contain xml"
+      return false
+    end
+    
+    # --- applying regexp list
+    if fcfg[:regexp].is_a?(Array)
+      @log.info "#{fcfg[:name]}: refining content"
+      begin
+        fcfg[:regexp].each do |pair|
+          raise 'invalid regexp pair' unless pair.is_a?(Array) && pair.size == 2
+          rex, str = pair
+          content = content.to_s.gsub Regexp.new(rex.to_s), str.to_s
+        end
+      rescue
+        @log.warn "#{fcfg[:name]}: regexp error (#{$!})"
+      end
     end
     
     # --- parse feed
