@@ -401,6 +401,7 @@ class RSSDler
     
     script = File.join(@config[:pwd], 'scrapes', fcfg[:name])
     if File.executable?(script) #&& fcfg[:url].to_s.strip.size == 0
+      # puts "SCRAPE: #{script}"
       # --- executing scraping script
       @log.info "#{fcfg[:name]}: scraping website"
       agent = random_agent(:firefox)
@@ -473,12 +474,13 @@ class RSSDler
     # --- run the eventual conversion script
     script = File.join(@config[:pwd], 'scripts', fcfg[:name])
     if File.executable?(script)
+      # puts "SCRIPT: #{script}"
       @log.info "#{fcfg[:name]}: converting content"
       begin
         Dir.chdir(File.dirname(script)) do
           cmd = "./#{fcfg[:name].shellescape} #{timeout} #{agent.shellescape} #{fcfg[:url].to_s.shellescape}"
           Open3.popen2(cmd) do |stdin, stdout, wait_thr|
-            stdin.puts content
+            stdin.puts content.to_s
             stdin.close
             content = stdout.read
           end # open2
@@ -490,6 +492,7 @@ class RSSDler
     end
     
     # convert and sanitize to UTF8
+    middot = "\u00B7"
     initial_encoding = content.encoding.name
     if initial_encoding.upcase != 'UTF-8'
       content.force_encoding('UTF-8')
@@ -497,11 +500,14 @@ class RSSDler
       unless content.valid_encoding?
         content.
           force_encoding(initial_encoding).
-          encode!('UTF-8', :replace => '', :invalid => :replace, :undef => :replace)
+          encode!('UTF-8', :replace => middot, :invalid => :replace, :undef => :replace)
       end
       
       @log.debug "#{fcfg[:name]}: encoding #{initial_encoding} => #{content.encoding.name}"
     end
+    # fix the sporadic String#encode! C function bug
+    # https://www.google.it/#q=ruby+invalid+byte+sequence+in+utf-8
+    content.size.times{|i| content[i]=middot unless content[i].valid_encoding? }
     
     if content.to_s !~ /^.*<\?xml.*version/i
       # File.open('output.xml','w'){|f| f.write content}
