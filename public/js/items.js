@@ -144,10 +144,22 @@ $.extend($, {
     mark_all_read: function () {
       var icon = $('#items div.root .icon.mark_all_read .ui-icon');
       
-      if (icon.length > 0 && confirm('Mark all read?'))
+      if (icon.length > 0 && confirm('Mark all read?')) {
+        var ids = {};
+        // extract only visible ids
+        $( $('#items').data('feeds') ).each(function () {
+          ids[ this ] = $.makeArray(
+            $('#items div.item[data-id][data-feed="'+this+'"]').
+              map(function () { return $(this).data('id'); })
+          );
+        });
+        
         $.ajax({
           url: '/mark_all_read',
-          data: { feeds: $('#items').data('feeds') },
+          data: {
+            feeds: $('#items').data('feeds'),
+            ids:   ids
+          },
           type: 'GET',
           dataType: 'json',
           cache: false,
@@ -164,6 +176,7 @@ $.extend($, {
           complete: function () { icon.show().next().remove(); },
           error: function () { alert('Server error!'); }
         });
+      }//if
     },//mark_all_read
     
     close_view: function () {

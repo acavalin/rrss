@@ -155,7 +155,7 @@ class RSSMngr < Sinatra::Base
   end # ------------------------------------------------------------------------
   
   get '/mark_all_read' do
-    ris = mark_all_read(params[:feeds])
+    ris = mark_all_read(params[:feeds], params[:ids])
     { :ris => (ris ? 'ok' : 'err') }.to_json
   end # ------------------------------------------------------------------------
   
@@ -244,7 +244,7 @@ class RSSMngr < Sinatra::Base
         db.results_as_hash = true
         
         list += db.execute(
-          "SELECT #{columns.join ','} FROM items #{where_clause} ORDER BY pub_date DESC",
+          "SELECT #{columns.join ','} FROM items #{where_clause} ORDER BY pub_date DESC LIMIT 500",
           *query_args
         ).map{|i|
           i['name'] = name
@@ -338,16 +338,17 @@ class RSSMngr < Sinatra::Base
     end
   end # toggle_read ------------------------------------------------------------
   
-  def mark_all_read(names)
+  def mark_all_read(names, ids)
     names = [names] if names.is_a?(String)
     
     names.all?{|name|
       begin
         db = SQLite3::Database.new File.join(settings.rssdler.config[:dbdir], "#{name}.db")
-        db.execute 'UPDATE items SET read = 1'
+        feed_ids = ids[name].to_a.map(&:to_i).unshift(-1).compact
+        db.execute "UPDATE items SET read = 1 WHERE id IN (#{feed_ids.join ','})"
         # updare unread count
         if feed = settings.rssdler.feeds.detect{|f| f[:name] == name}
-          feed[:unread] = 0
+          feed[:unread] = db.get_first_value("SELECT COUNT(*) AS unread FROM items WHERE read = 0").to_i
         end
         db.close
         true
