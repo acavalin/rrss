@@ -6,17 +6,14 @@
   max_old_items:    100   # maximum number of old items to keep
   # item properties to be hashed for generating its unique id
   # available keys are: :id, :link, :title, :descr, :date
-  hash_keys:
-    - :id
-    - :link
-    - :title
-    - :date
+  hash_keys: [ id, link, title, date ]
 
 # ------------------------------------------------------------------------------
 
 :rss_mngr:
   layout:           spartan     # layout css file
   port:             3333        # webserver (GUI) listening port
+  bind:             0.0.0.0     # webserver (GUI) binding address (0.0.0.0 = all)
   check_interval:   5           # periodic feed check interval time (in minutes)
   exit_grace_time:  5           # feed download grace time on exit (in minutes)
   # every link will be called via ajax and appended to this one

@@ -70,7 +70,7 @@ class RSSDler
       # eg: RSSDler/1.0 (Linux x86_64; en_US.UTF-8) ruby/1.9.2-p290 (open-uri, rss) RSSMngr/1.0 Sinatra/1.4.3
       [
         "RSSDler/#{RSS_DLER_VERSION}",
-        "(#{Config::CONFIG['target_os'].capitalize} #{Config::CONFIG['target_cpu']}; en_US.UTF-8)",
+        "(#{RbConfig::CONFIG['target_os'].capitalize} #{RbConfig::CONFIG['target_cpu']}; en_US.UTF-8)",
         "#{RUBY_ENGINE}/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}",
         "(open-uri, rss)",
         "RSSMngr/#{RSS_MNGR_VERSION} Sinatra/#{Sinatra::VERSION}",

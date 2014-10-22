@@ -31,6 +31,7 @@ class RSSMngr < Sinatra::Base
   # ============================================================================
   # default settings
   set :port            => 3333,
+      :bind            => '0.0.0.0',
       :run             => false,
       :root            => File.expand_path(File.join(File.dirname(__FILE__), '..')),
       :static          => true,

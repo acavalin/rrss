@@ -24,7 +24,7 @@
       :url:     http://divajutta.com/doctormo/ubunchu/feed.rss
       :link:    http://divajutta.com/doctormo/ubunchu/
       :period:  60
-      :hash_keys: [ :id, :link, :title ]
+      :hash_keys: [ id, link, title ]
 
     - :name:    saturday morning breakfast cereal
       :url:     http://feeds.feedburner.com/smbc-comics/PvLb
