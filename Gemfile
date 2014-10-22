@@ -7,5 +7,10 @@ gem 'sqlite3', '~>1.3.6'
 gem 'thin',    '~>1.5.1'
 gem 'sinatra', '~>1.4.3'
 
-gem 'debugger'
+if RUBY_VERSION < '2'
+  gem 'debugger'
+else
+  gem 'byebug'
+end
+
 gem 'sinatra-reloader', '~>1.0'
