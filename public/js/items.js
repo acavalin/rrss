@@ -160,13 +160,13 @@ $.extend($, {
             feeds: $('#items').data('feeds'),
             ids:   ids
           },
-          type: 'GET',
+          type: 'POST',
           dataType: 'json',
           cache: false,
           beforeSend: function () { icon.hide().after( $.utils.spinner('linear') ); },
           success: function (resp) {
             if (resp.ris == 'ok') {
-              $('#items div.item.unread:not(.toolbar)').
+              $('#items div.item.unread:not(.toolbar), #item div.linear_item.unread').
                 removeClass('unread').
                 find('.icon.read').toggleClass('ui-icon-star ui-icon-minus');
               $.feeds.refresh_feeds();

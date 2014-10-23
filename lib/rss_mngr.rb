@@ -154,7 +154,7 @@ class RSSMngr < Sinatra::Base
     { :ris => (ris ? 'ok' : 'err') }.to_json
   end # ------------------------------------------------------------------------
   
-  get '/mark_all_read' do
+  post '/mark_all_read' do
     ris = mark_all_read(params[:feeds], params[:ids])
     { :ris => (ris ? 'ok' : 'err') }.to_json
   end # ------------------------------------------------------------------------
